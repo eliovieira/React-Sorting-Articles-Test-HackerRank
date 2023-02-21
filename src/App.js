@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "h8k-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Articles from "./components/Articles";
 
@@ -10,16 +10,22 @@ const title = "Sorting Articles";
 function App({ articles }) {
   const [articlesList, setArticlesList] = useState(articles);
 
-  console.log(articlesList);
+  useEffect(() => {
+    sortByUpvotes();
+  }, []);
 
   function sortByUpvotes() {
-    const sortedByUpvotes = articlesList.sort((a, b) => b.upvotes - a.upvotes);
+    const sortedByUpvotes = [...articlesList].sort(
+      (a, b) => b.upvotes - a.upvotes
+    );
     setArticlesList(sortedByUpvotes);
     console.log(articlesList);
   }
 
   function sortByMostRecent() {
-    const sortedByMostRecent = articlesList.sort((a, b) => b.date - a.date);
+    const sortedByMostRecent = [...articlesList].sort(
+      (a, b) => b.date - a.date
+    );
     setArticlesList(sortedByMostRecent);
     console.log(articlesList);
   }

@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 
 function Articles({ articles }) {
-  const [articlesList, setArticlesList] = useState(articles);
-
   return (
     <div className="card w-50 mx-auto">
       <table>
@@ -15,7 +13,7 @@ function Articles({ articles }) {
           </tr>
         </thead>
         <tbody>
-          {articlesList.map((article, index) => {
+          {articles.map((article, index) => {
             return (
               <tr data-testid="article" key={index}>
                 <td data-testid="article-title">{article.title}</td>
