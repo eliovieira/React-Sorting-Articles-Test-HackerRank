@@ -4,8 +4,6 @@ import { useState } from "react";
 function Articles({ articles }) {
   const [articlesList, setArticlesList] = useState(articles);
 
-  function sortByUpvotes() {}
-
   return (
     <div className="card w-50 mx-auto">
       <table>
@@ -17,7 +15,7 @@ function Articles({ articles }) {
           </tr>
         </thead>
         <tbody>
-          {articles.map((article, index) => {
+          {articlesList.map((article, index) => {
             return (
               <tr data-testid="article" key={index}>
                 <td data-testid="article-title">{article.title}</td>
