@@ -15,19 +15,18 @@ function App({ articles }) {
   }, []);
 
   function sortByUpvotes() {
-    const sortedByUpvotes = [...articlesList].sort(
-      (a, b) => b.upvotes - a.upvotes
-    );
-    setArticlesList(sortedByUpvotes);
     console.log(articlesList);
+    const sortedByUpvotes = articlesList.sort((a, b) => {
+      return b.upvotes - a.upvotes;
+    });
+    setArticlesList([...sortedByUpvotes]);
   }
 
   function sortByMostRecent() {
-    const sortedByMostRecent = [...articlesList].sort(
-      (a, b) => b.date - a.date
-    );
-    setArticlesList(sortedByMostRecent);
-    console.log(articlesList);
+    const sortedByMostRecent = articlesList.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+    setArticlesList([...sortedByMostRecent]);
   }
 
   return (
@@ -40,14 +39,14 @@ function App({ articles }) {
         <button
           data-testid="most-upvoted-link"
           className="small"
-          onClick={() => sortByUpvotes()}
+          onClick={sortByUpvotes}
         >
           Most Upvoted
         </button>
         <button
           data-testid="most-recent-link"
           className="small"
-          onClick={() => sortByMostRecent()}
+          onClick={sortByMostRecent}
         >
           Most Recent
         </button>
